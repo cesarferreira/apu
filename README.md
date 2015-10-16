@@ -9,34 +9,47 @@
 <img src="https://raw.githubusercontent.com/cesarferreira/apk-utils/master/extras/usage.gif" width="100%" />
 </p> -->
 
+Builds and runs the `~/Downloads/hello-world` project to your device
+```shell
+apk-utils -p ~/Downloads/hello-world --install --run
+```
+
 
 ## Usage
 ```shell
-apk-tools -r
-```
+apk-utils -r # runs the app on a connected device
+apk-utils -k # Retrieves package name (eg. com.example.app)
+apk-utils -u # Uninstalls the apk from your device
+apk-utils -i # Installs the apk on your device
+apk-utils -a # Checks if the ANDROID_HOME variable is defined
+apk-utils -l # Get the launcher activity path
+apk-utils -p # Custom path to android project
+apk-utils -r # Run the build on the device
 
-Wait a few seconds... and `voilà`! The app is opened on your phone :smiley:
+```
+## Usage
+
+```shell
+$ apk-utils -h                                                                                                                      
+Usage: apk-utils PATH [OPTIONS]
+
+Options
+    -k, --package                    Retrieves package name (eg. com.example.app)
+    -u, --uninstall                  Uninstalls the apk from your device
+    -i, --install                    Installs the apk on your device
+    -a, --android-home               Checks if the ANDROID_HOME variable is defined
+    -l, --launcher                   Get the launcher activity path
+    -p, --path PATH                  Custom path to android project
+    -r, --run FLAVOUR                Run the build on the device
+    -c, --clear                      Clear app data
+    -h, --help                       Displays help
+    -v, --version                    Displays version
+```
 
 ## Installation
 
     $ gem install apk-utils
 
-
-**Requirements `(if you haven't already)`:**
-
-> $ANDROID_HOME defined on the environment variables [(how-to)](http://stackoverflow.com/questions/5526470/trying-to-add-adb-to-path-variable-osx)
-
-
-> Android SDK in your $PATH [(how-to)](http://stackoverflow.com/questions/19986214/setting-android-home-enviromental-variable-on-mac-os-x)
-
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/cesarferreira/apk-utils.
-
-To install gem as local you can use this:
-```shell
-# In the project folder:
-rake install
-# Next in the any gemset or place:
-gem install --local path_to_apk-utils/pkg/apk-utils-<builded_version>.gem
-```
