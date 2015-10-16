@@ -17,28 +17,28 @@ module Apu
       @execute_command
     end
 
-    def remove_local_properties
-      Dir.chdir @base_path
-      file_name = 'local.properties'
-
-      File.delete(file_name) if File.exist?(file_name)
-
-      system("touch #{file_name}")
-    end
-
-    def remove_application_id
-      # Open temporary file
-      tmp = Tempfile.new("extract")
-
-      file = "#{@path_to_sample}/build.gradle"
-
-      # Write good lines to temporary file
-      open(file, 'r').each { |l| tmp << l unless l.include? 'applicationId' }
-      tmp.close
-
-      # Move temp file to origin
-      FileUtils.mv(tmp.path, file)
-    end
+    # def remove_local_properties
+    #   Dir.chdir @base_path
+    #   file_name = 'local.properties'
+    #
+    #   File.delete(file_name) if File.exist?(file_name)
+    #
+    #   system("touch #{file_name}")
+    # end
+    #
+    # def remove_application_id
+    #   # Open temporary file
+    #   tmp = Tempfile.new("extract")
+    #
+    #   file = "#{@path_to_sample}/build.gradle"
+    #
+    #   # Write good lines to temporary file
+    #   open(file, 'r').each { |l| tmp << l unless l.include? 'applicationId' }
+    #   tmp.close
+    #
+    #   # Move temp file to origin
+    #   FileUtils.mv(tmp.path, file)
+    # end
 
     def settings_gradle_file(path = @base_path)
       File.join(path, 'settings.gradle')
@@ -77,14 +77,8 @@ module Apu
       # Generate the gradle/ folder
       system('gradle wrap') if File.exist?('gradlew') and !is_gradle_wrapped
 
-      remove_application_id
-      remove_local_properties
-
-      system("#{builder} clean installDebug")
-
-      clear_app_data
-
       puts "Installing #{@package.green}...\n"
+      system("#{builder} clean installDebug")
 
     end
 

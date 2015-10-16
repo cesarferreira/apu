@@ -10,7 +10,6 @@ module Apu
       @settings_gradle_path = settings_gradle_file
       @modules = find_modules
       path, @execute_command = sample_project #supa hack
-
     end
 
     def execution_line

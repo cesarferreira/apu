@@ -1,12 +1,12 @@
 # apu
- [![Build Status](https://travis-ci.org/cesarferreira/apu.svg?branch=master)](https://travis-ci.org/cesarferreira/apu) [![Gem Version](https://badge.fury.io/rb/apu.svg)](http://badge.fury.io/rb/apu) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-apu-green.svg?style=flat)](https://android-arsenal.com/details/1/2361)
-
+ [![Build Status](https://travis-ci.org/cesarferreira/apu.svg?branch=master)](https://travis-ci.org/cesarferreira/apu) [![Gem Version](https://badge.fury.io/rb/apu.svg)](http://badge.fury.io/rb/apu)
+ 
 **A**ndroid a**p**plication **u**tils
 
 > A set of useful tools for android developers
 
 <p align="center">
-<img src="https://raw.apuusercontent.com/cesarferreira/apu/master/extras/apu.gif" width="100%" />
+<img src="https://raw.githubusercontent.com/cesarferreira/apu/master/extras/apu.gif" width="100%" />
 </p>
 
 
@@ -41,4 +41,4 @@ Options
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://apu.com/cesarferreira/apu.
+Bug reports and pull requests are welcome on GitHub at https://github.com/cesarferreira/apu.
