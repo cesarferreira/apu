@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'apk-utils/android_project'
+require 'apu/android_project'
 
 
 # RSpec.describe "something" do

@@ -3,7 +3,7 @@ require 'fileutils'
 require 'tempfile'
 require 'pry'
 
-module ApkUtils
+module Apu
   class AndroidProject
     def initialize(path)
       @base_path = "#{path}/"
@@ -59,7 +59,7 @@ module ApkUtils
     def install
       Dir.chdir @base_path
 
-      path, execute_line = sample_project
+      path, @execute_line = sample_project
 
       if path == false and execute_line == false
         puts "Couldn't open the sample project, sorry!".red
@@ -86,7 +86,6 @@ module ApkUtils
 
       puts "Installing #{@package.green}...\n"
 
-      @execute_line = execute_line
     end
 
     def get_execute_line

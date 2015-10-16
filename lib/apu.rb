@@ -1,10 +1,10 @@
 require 'optparse'
 require 'colorize'
 require 'fileutils'
-require 'apk-utils/version'
-require 'apk-utils/android_project'
+require 'apu/version'
+require 'apu/android_project'
 
-module ApkUtils
+module Apu
   class MainApp
     def initialize(arguments)
 
@@ -19,7 +19,7 @@ module ApkUtils
 
     def create_options_parser
       @opt_parser = OptionParser.new do |opts|
-        opts.banner = "Usage: apk-utils PATH [OPTIONS]"
+        opts.banner = "Usage: apu PATH [OPTIONS]"
         opts.separator  ''
         opts.separator  "Options"
 
@@ -53,14 +53,13 @@ module ApkUtils
         end
 
         opts.on('-p PATH', '--path PATH', 'Custom path to android project') do |app_path|
-          @app_path = app_path
+          @app_path = app_path if @app_path != '.'
         end
 
         opts.on('-r', '--run', 'Run the build on the device') do |flavour|
           android_project = get_android_project_object
 
-          system(android_project.install)
-          puts "executing: #{execute_line.green}\n\n"
+          android_project.install
           system(android_project.get_execute_line)
           exit
         end
@@ -75,7 +74,7 @@ module ApkUtils
           exit
         end
         opts.on('-v', '--version', 'Displays version') do
-          puts ApkUtils::VERSION
+          puts Apu::VERSION
           exit
         end
 
