@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+require 'bundler/setup'
+require 'apk-utils'
+
+ApkUtils::MainApp.new(ARGV).call
