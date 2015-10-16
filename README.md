@@ -11,8 +11,8 @@
 
 Regarding the android project on: `~/Downloads/hello-world`
 ```shell
-apk-utils -path ~/Downloads/hello-world --run       # builds and runs on your device
-apk-utils -path ~/Downloads/hello-world --uninstall # uninstall the app
+apk-utils -path ~/Downloads/hello-world --run         # builds and runs on your device
+apk-utils -path ~/Downloads/hello-world --uninstall   # uninstalls the app
 ```
 
 ## Usage
