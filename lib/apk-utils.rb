@@ -24,10 +24,8 @@ module ApkUtils
         opts.separator  "Options"
 
         opts.on('-k', '--package', 'Retrieves package name (eg. com.example.app)') do |app_path|
-
           android_project = get_android_project_object
-          android_project.package
-
+          puts android_project.get_package_name.green
           exit
         end
 

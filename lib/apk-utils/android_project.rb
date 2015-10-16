@@ -118,6 +118,10 @@ module ApkUtils
       "adb uninstall #{@package}"
     end
 
+    def get_package_name
+      @package
+    end
+
     def clear_app_data
       system(get_clear_app_command)
     end
