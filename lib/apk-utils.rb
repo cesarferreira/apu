@@ -32,17 +32,15 @@ module ApkUtils
         end
 
         opts.on('-u', '--uninstall', 'Uninstalls the apk from your device') do |app_path|
-
           android_project = get_android_project_object
-          android_project.uninstall
-          exit 1
+          android_project.uninstall_application
+          exit
         end
 
         opts.on('-i', '--install', 'Installs the apk on your device') do |app_path|
-
           android_project = get_android_project_object
           android_project.install
-          exit 1
+          exit
         end
 
         opts.on('-a', '--android-home', 'Checks if the ANDROID_HOME variable is defined') do |home|
@@ -65,7 +63,8 @@ module ApkUtils
         end
 
         opts.on('-c', '--clear', 'Clear app data') do |flavour|
-          #get_execution_line_command(path_to_sample)
+          android_project = get_android_project_object
+          android_project.clear_app_data
         end
 
         opts.on('-h', '--help', 'Displays help') do
