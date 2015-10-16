@@ -14,19 +14,6 @@ Builds and runs the `~/Downloads/hello-world` project to your device
 apk-utils -p ~/Downloads/hello-world --install --run
 ```
 
-
-## Usage
-```shell
-apk-utils -r # runs the app on a connected device
-apk-utils -k # Retrieves package name (eg. com.example.app)
-apk-utils -u # Uninstalls the apk from your device
-apk-utils -i # Installs the apk on your device
-apk-utils -a # Checks if the ANDROID_HOME variable is defined
-apk-utils -l # Get the launcher activity path
-apk-utils -p # Custom path to android project
-apk-utils -r # Run the build on the device
-
-```
 ## Usage
 
 ```shell
@@ -42,8 +29,6 @@ Options
     -p, --path PATH                  Custom path to android project
     -r, --run FLAVOUR                Run the build on the device
     -c, --clear                      Clear app data
-    -h, --help                       Displays help
-    -v, --version                    Displays version
 ```
 
 ## Installation
