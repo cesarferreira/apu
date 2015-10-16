@@ -56,8 +56,13 @@ module ApkUtils
           @app_path = app_path
         end
 
-        opts.on('-r FLAVOUR', '--run FLAVOUR', 'Run the build on the device') do |flavour|
-          #get_execution_line_command(path_to_sample)
+        opts.on('-r', '--run', 'Run the build on the device') do |flavour|
+          android_project = get_android_project_object
+
+          system(android_project.install)
+          puts "executing: #{execute_line.green}\n\n"
+          system(android_project.get_execute_line)
+          exit
         end
 
         opts.on('-c', '--clear', 'Clear app data') do |flavour|

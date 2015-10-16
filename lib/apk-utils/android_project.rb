@@ -85,10 +85,12 @@ module ApkUtils
       clear_app_data
 
       puts "Installing #{@package.green}...\n"
-      puts "executing: #{execute_line.green}\n\n"
 
-      system(execute_line)
+      @execute_line = execute_line
+    end
 
+    def get_execute_line
+      @execute_line
     end
 
     def is_gradle_wrapped
