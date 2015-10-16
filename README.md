@@ -1,6 +1,6 @@
 # apu
  [![Build Status](https://travis-ci.org/cesarferreira/apu.svg?branch=master)](https://travis-ci.org/cesarferreira/apu) [![Gem Version](https://badge.fury.io/rb/apu.svg)](http://badge.fury.io/rb/apu)
- 
+
 **A**ndroid a**p**plication **u**tils
 
 > A set of useful tools for android developers
@@ -33,6 +33,8 @@ Options
     -p, --path PATH                  Custom path to android project
     -r, --run                        Run the build on the device
     -c, --clear                      Clear app data
+    -h, --help                       Displays help
+    -v, --version                    Displays version
 ```
 
 ## Installation
