@@ -11,10 +11,14 @@ module Apu
       @app_path = `pwd`.tr("\n","")
 
       create_options_parser
-      #@url = ['-h', '--help', '-v', '--version'].include?(arguments.first) ? nil : arguments.shift
+      @line = ['-h', '--help', '-v', '--version'].include?(arguments.first) ? nil : arguments.shift
 
       @opt_parser.parse!(arguments)
 
+      unless @line
+        puts @opt_parser.help
+        exit
+      end
     end
 
     def create_options_parser
