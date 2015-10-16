@@ -1,7 +1,6 @@
 require 'nokogiri'
 require 'fileutils'
 require 'tempfile'
-require 'pry'
 
 module Apu
   class AndroidProject
