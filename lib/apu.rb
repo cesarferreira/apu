@@ -50,8 +50,6 @@ module Apu
         end
       end
 
-      puts @package_flag # TODO DELETE
-
       if @package_flag
         puts android_project.get_package_name.green
       end
@@ -90,12 +88,10 @@ module Apu
         opts.separator  "Options"
 
         opts.on('-p PATH', '--path PATH', 'Custom path to android project') do |app_path|
-          puts "Path #{app_path}"
           @app_path = app_path if @app_path != '.'
         end
 
         opts.on('-k', '--package', 'Retrieves package name (eg. com.example.app)') do |value|
-          puts "--package"
           @package_flag = true
         end
 
