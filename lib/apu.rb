@@ -3,7 +3,7 @@ require 'colorize'
 require 'fileutils'
 require 'apu/version'
 require 'apu/android_project'
-require 'pry'
+#require 'pry'
 
 module Apu
   class MainApp
@@ -39,7 +39,6 @@ module Apu
       puts "manage_opts"
 
       if @require_analyses
-        puts "I REQUIRE ANALYSIES"
         # instatiate android project
         android_project = AndroidProject.new(@app_path)
 

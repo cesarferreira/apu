@@ -23,3 +23,10 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.0.1'
 }
+
+  def manifestVersionName() {
+    def manifestFile = file(project.projectDir.absolutePath + '/src/main/AndroidManifest.xml')
+    def ns = new groovy.xml.Namespace("http://schemas.android.com/apk/res/android", "android")
+    def xml = new XmlParser().parse(manifestFile)
+    return xml.attributes()[ns.versionName].toString()
+}
