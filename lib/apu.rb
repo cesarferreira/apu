@@ -27,16 +27,6 @@ module Apu
 
       # Parse Options
       create_options_parser(arguments)
-#binding.pry
-      # @line = ['-h', '--help'].include?(arguments.first) ? nil : arguments.shift
-      # # shows help if nothing else
-      # unless @line
-      #   puts @opt_parser.help
-      #   exit
-      # end
-
-      # parse Arguments
-      #@opt_parser.parse!(arguments)
 
       manage_opts
 
