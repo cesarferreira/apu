@@ -3,85 +3,148 @@ require 'colorize'
 require 'fileutils'
 require 'apu/version'
 require 'apu/android_project'
+require 'pry'
 
 module Apu
   class MainApp
     def initialize(arguments)
 
-      @app_path = `pwd`.tr("\n","")
+      # defaults
+      @app_path = Dir.pwd
+      @package_flag = false
+      @uninstall_flag = false
+      @install_flag = false
+      @android_home_flag = false
+      @launcher_flag = false
+      @run_flag = false
+      @clear_flag = false
 
-      create_options_parser
-      @line = ['-h', '--help', '-v', '--version'].include?(arguments.first) ? nil : arguments.shift
+      @require_analyses = true
 
-      @opt_parser.parse!(arguments)
+      if !!arguments
+          arguments.push '-h'
+      end
 
-      unless @line
-        puts @opt_parser.help
-        exit
+      # Parse Options
+      create_options_parser(arguments)
+#binding.pry
+      # @line = ['-h', '--help'].include?(arguments.first) ? nil : arguments.shift
+      # # shows help if nothing else
+      # unless @line
+      #   puts @opt_parser.help
+      #   exit
+      # end
+
+      # parse Arguments
+      #@opt_parser.parse!(arguments)
+
+      manage_opts
+
+    end
+
+    ##
+    ## Manage options
+    ##
+    def manage_opts
+      puts "manage_opts"
+
+      if @require_analyses
+        puts "I REQUIRE ANALYSIES"
+        # instatiate android project
+        android_project = AndroidProject.new(@app_path)
+
+        # is a valid android project?
+        unless android_project.is_valid
+          puts "#{@app_path.red} is not a valid android project"
+          exit
+        end
+      end
+
+      puts @package_flag # TODO DELETE
+
+      if @package_flag
+        puts android_project.get_package_name.green
+      end
+
+      if @uninstall_flag
+        android_project.uninstall_application
+      end
+
+      if @install_flag
+        android_project.install
+      end
+
+      if @android_home_flag
+        puts android_home_is_defined
+      end
+
+      if @launcher_flag
+        puts android_project.get_launchable_activity.green
+      end
+
+      if @run_flag
+        android_project.install
+        system(android_project.get_execute_line)
+      end
+
+      if @clear_flag
+        android_project.clear_app_data
       end
     end
 
-    def create_options_parser
-      @opt_parser = OptionParser.new do |opts|
-        opts.banner = "Usage: apu PATH [OPTIONS]"
+    def create_options_parser(args)
+      #@opt_parser = OptionParser.new do |opts|
+      args.options do |opts|
+        opts.banner = "Usage: apu [OPTIONS]"
         opts.separator  ''
         opts.separator  "Options"
 
-        opts.on('-k', '--package', 'Retrieves package name (eg. com.example.app)') do |app_path|
-          android_project = get_android_project_object
-          puts android_project.get_package_name.green
-          exit
-        end
-
-        opts.on('-u', '--uninstall', 'Uninstalls the apk from your device') do |app_path|
-          android_project = get_android_project_object
-          android_project.uninstall_application
-          exit
-        end
-
-        opts.on('-i', '--install', 'Installs the apk on your device') do |app_path|
-          android_project = get_android_project_object
-          android_project.install
-          exit
-        end
-
-        opts.on('-a', '--android-home', 'Checks if the ANDROID_HOME variable is defined') do |home|
-          p android_home_is_defined
-          exit
-        end
-
-        opts.on('-l', '--launcher', 'Get the launcher activity path') do |app_path|
-          android_project = get_android_project_object
-          puts android_project.get_launchable_activity.green
-          exit
-        end
-
         opts.on('-p PATH', '--path PATH', 'Custom path to android project') do |app_path|
+          puts "Path #{app_path}"
           @app_path = app_path if @app_path != '.'
         end
 
-        opts.on('-r', '--run', 'Run the build on the device') do |flavour|
-          android_project = get_android_project_object
+        opts.on('-k', '--package', 'Retrieves package name (eg. com.example.app)') do |value|
+          puts "--package"
+          @package_flag = true
+        end
 
-          android_project.install
-          system(android_project.get_execute_line)
-          exit
+        opts.on('-u', '--uninstall', 'Uninstalls the apk from your device') do |app_path|
+          @uninstall_flag = true
+        end
+
+        opts.on('-i', '--install', 'Installs the apk on your device') do |install|
+          @install_flag = true
+        end
+
+        opts.on('-a', '--android-home', 'Checks if the ANDROID_HOME variable is defined') do |home|
+          @android_home_flag = true
+          @require_analyses = false
+        end
+
+        opts.on('-l', '--launcher', 'Get the launcher activity path') do |app_path|
+          @launcher_flag = true
+        end
+
+        opts.on('-r', '--run', 'Run the build on the device') do |flavour|
+          @run_flag = true
         end
 
         opts.on('-c', '--clear', 'Clear app data') do |flavour|
-          android_project = get_android_project_object
-          android_project.clear_app_data
+          @clear_flag = true
         end
 
         opts.on('-h', '--help', 'Displays help') do
+          @require_analyses = false
           puts opts.help
           exit
         end
         opts.on('-v', '--version', 'Displays version') do
+          @require_analyses = false
           puts Apu::VERSION
           exit
         end
-
+        opts.parse!
 
       end
     end
@@ -91,17 +154,6 @@ module Apu
       !sdk.empty?
     end
 
-    def get_android_project_object
-      android_project = AndroidProject.new(@app_path)
-
-      # is a valid android project?
-      unless android_project.is_valid
-        puts "#{@app_path.red} is not a valid android project"
-        exit
-      end
-      return android_project
-    end
-
     def call
       unless android_home_is_defined
         puts "\nWARNING: your #{'$ANDROID_HOME'.yellow} is not defined\n"
@@ -109,8 +161,6 @@ module Apu
         puts "\nNow type #{'source ~/.bashrc'.yellow}\n\n"
         exit 1
       end
-
-
     end
   end
 end
