@@ -3,7 +3,7 @@ require 'colorize'
 require 'fileutils'
 require 'apu/version'
 require 'apu/android_project'
-#require 'pry'
+# require 'pry'
 
 module Apu
   class MainApp
@@ -21,9 +21,9 @@ module Apu
 
       @require_analyses = true
 
-      if !!arguments
-          arguments.push '-h'
-      end
+      # if !!arguments
+      #     arguments.push '-h'
+      # end
 
       # Parse Options
       create_options_parser(arguments)
@@ -36,7 +36,6 @@ module Apu
     ## Manage options
     ##
     def manage_opts
-      puts "manage_opts"
 
       if @require_analyses
         # instatiate android project
