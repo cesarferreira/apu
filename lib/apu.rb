@@ -110,11 +110,15 @@ module Apu
           @launcher_flag = true
         end
 
-        opts.on('-r', '--run', 'Run the build on the device') do |flavour|
+        opts.on('-o', '--open', 'Open the build on the device') do |flavour|
           @run_flag = true
         end
 
         opts.on('-c', '--clear', 'Clear app data') do |flavour|
+          @clear_flag = true
+        end
+
+        opts.on('-r', '--release', 'Create release version and opens the folder') do |flavour|
           @clear_flag = true
         end
 
