@@ -69,7 +69,7 @@ module Apu
       end
 
       if @run_flag
-        android_project.install
+        #android_project.install
         system(android_project.get_execute_line)
       end
 
