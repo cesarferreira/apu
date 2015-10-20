@@ -11,11 +11,15 @@
 
 
 ## Quick sample
-Let's: `cd ~/Downloads/hello-world`
+Let's: `cd ~/hello-world`
 ```shell
-apu --install     # build and install on your device
-apu --run         # runs on your device
-apu --uninstall   # uninstall the app
+$ apu --install     # build and install on your device
+$ apu --run         # runs on your device
+$ apu --uninstall   # uninstall the app
+
+
+# Goes to `~/hello-world`, builds, installs and runs on your device
+$ apu -p ~/hello-world -i -r  
 ```
 
 ## Usage
