@@ -11,11 +11,11 @@
 
 
 ## Quick sample
-Regarding the android project on: `~/Downloads/hello-world`
+Let's: `cd ~/Downloads/hello-world`
 ```shell
-apu --path ~/Downloads/hello-world --install     # build and install on your device
-apu --path ~/Downloads/hello-world --run         # build, install and run on your device
-apu --path ~/Downloads/hello-world --uninstall   # uninstall the app
+apu --install     # build and install on your device
+apu --run         # runs on your device
+apu --uninstall   # uninstall the app
 ```
 
 ## Usage
