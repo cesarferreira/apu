@@ -18,8 +18,8 @@ $ apu --run         # runs on your device
 $ apu --uninstall   # uninstall the app
 
 
-# Goes to `~/hello-world`, builds, installs and runs on your device
-$ apu -p ~/hello-world -i -r  
+# They can all be combined:
+$ apu -p ~/hello-world -i -r # builds, installs and runs on your device  
 ```
 
 ## Usage
