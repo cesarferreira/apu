@@ -18,6 +18,7 @@ module Apu
       @launcher_flag = false
       @run_flag = false
       @clear_flag = false
+      @android_studio_flag = false
 
       @require_analyses = true
 
@@ -68,6 +69,10 @@ module Apu
         puts android_project.get_launchable_activity.green
       end
 
+      if @android_studio_flag
+        system('open -a Android\ Studio ' + @app_path)
+      end
+
       if @run_flag
         #android_project.install
         system(android_project.get_execute_line)
@@ -112,6 +117,10 @@ module Apu
 
         opts.on('-o', '--open', 'Open the build on the device') do |flavour|
           @run_flag = true
+        end
+
+        opts.on('-A', '--android-studio', 'Opens project on android studio') do |flavour|
+          @android_studio_flag = true
         end
 
         opts.on('-c', '--clear', 'Clear app data') do |flavour|
